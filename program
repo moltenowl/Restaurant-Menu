@@ -1,0 +1,76 @@
+#include <iostream>
+#include<string>
+using namespace std;
+
+bool menuChoice();
+void foodChoice();
+
+
+int main() {
+	cout << "Saludos! Bienvenidos a La Petite Penguini. Desea una mesa?" << endl << endl;
+
+	if (menuChoice()) {	foodChoice(); }
+	cout << endl << "Adios!" << endl << endl;
+
+	system("pause");
+}
+
+// ********************** Quieres ver el Menu *****************************************************
+bool menuChoice() {
+	cout << "Genial! Desearia ver el menu?" << endl << endl;
+	int choice;
+
+	do {
+		cout << "Entre 1 para si, 2 para no: "; cin >> choice; cout << endl;
+		if (choice == 1) { cout << "Fantastico! Este es nuestro menu:" << endl;	return true; }
+
+		else if (choice == 2) { cout << "Hmm, Que tragico. Esperemos que vuelvas pronto." << endl; return false; }
+
+
+	} while (choice != 2 || choice != 1);
+}
+
+// ************************************* El Menu ***************************************************
+void foodChoice() {
+	int op, cash; bool choice; bool prestamo; int bonus;
+	cout << "Cuanto dinero tienes esta tarde? $"; cin >> cash; cout << endl; int balance = cash;
+	if (cash < 4) { cout << "No puede comprar nada aqui. Sorry." << endl; choice = 2; }
+
+
+	if (cash > 4) {
+		cout << "1. Pan con Ajo .... $4 \n2. Pollo .... $8 \n3. Flan .... $6" << endl << endl << "Cual desea? "; cin >> op; cout << endl;
+
+		if (op == 1 && balance > 4) { cout << "Ordenastes pan con ajo por $4." << endl << endl; balance = cash - 4; }
+		else if (op == 2 && balance > 8) { cout << "Ordenastes pollo por $8." << endl << endl; balance = cash - 8; }
+		else if (op == 3 && balance > 6) { cout << "Ordenastes flan por $6." << endl << endl;  balance = cash - 6; }
+		else if (op >3) { cout << "Eso no esta en el menu. Escoge otro." << endl << endl; }
+		else { cout << "No tiene balance." << endl; }
+
+		cout << "Usted tiene un balance de dinero de: " << balance << endl;
+		cout << "Desea ordenar otro plato?" << endl << "Favor entre 1 para si o 0 para no. "; cin >> choice; cout << endl;
+	}
+	do {
+		if (choice == 1 && cash > 4) {
+
+			cout << "1. Pan con Ajo .... $4 \n2. Pollo .... $8 \n3. Flan .... $6" << endl << endl << "Cual desea? "; cin >> op; cout << endl;
+			if (op == 1 && balance > 4) {
+				cout << "Ordenastes pan con ajo por $4." << endl << endl; balance = cash - 4;
+				cout << "Usted tiene un balance de dinero de: " << balance << endl;
+			}
+			else if (op == 2 && balance > 8) {
+				cout << "Ordenastes pollo por $8." << endl << endl; balance = cash - 8;
+				cout << "Usted tiene un balance de dinero de: " << balance << endl;
+			}
+			else if (op == 3 && balance > 6) {
+				cout << "Ordenastes flan por $6." << endl << endl;  balance = cash - 6;
+				cout << "Usted tiene un balance de dinero de: " << balance << endl;
+			}
+			else if (balance < 4) { cout << "No tiene balance." << endl; break; }
+
+			else { cout << "Eso no esta en el menu. Escoge otro." << endl << endl; }
+			cout << "Desea ordenar otro plato?" << endl << "Favor entre 1 para si o 0 para no. "; cin >> choice; cout << endl;
+		}
+		else if (choice == 0) { cout << "Fue un placer tenerte aqui! Hasta pronto!" << endl; break; }
+
+		} while (choice != 0 || cash > 4);
+}
